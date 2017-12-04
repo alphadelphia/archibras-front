@@ -6,8 +6,8 @@ var coin = require("bitcoin")
 var client = new coin.Client({
   host: 'localhost',
   port: 41796, 		//mainnet 41798
-  user: 'harmonianrpc',
-  pass: 'fourier',
+  user: '',
+  pass: '',
   timeout: 30000
 });
 
