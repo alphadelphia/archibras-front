@@ -1,0 +1,12 @@
+{
+  "name": "archibras-front",
+  "version": "1.0.0",
+  "description": "front-end for Harmonian client",
+  "main": "app.js",
+  "author": "alphadelphia",
+  "license": "MIT",
+  "dependencies": {
+    "bitcoin": "^3.0.1",
+    "express": "^4.16.2"
+  }
+}
