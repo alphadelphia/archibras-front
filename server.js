@@ -7,25 +7,21 @@ var fs = require('fs');
 const coin = require("bitcoin");
 
 var rpc;
-
-//var key = fs.readFileSync('ssl/harmonian.key');
-//var cert = fs.readFileSync('ssl/harmonian.crt');
+/*
+var key = fs.readFileSync('ssl/harmonian.key');
+var cert = fs.readFileSync('ssl/harmonian.crt');
 //var ca = fs.readFileSync( 'ssl/intermediate.crt' );
 
-
-/*
 var options = {
 	key: key,
 	cert: cert
 };
-
 
 var https = require('https');
 
 https.createServer(options, app).listen(8144, function() {
 	console.log("Harmonian: ḧttps web server listening on port 8144");
 });
-
 */
 
 var http = require('http');
@@ -34,14 +30,15 @@ http.createServer(app).listen(8080, function() {
 	startRPCClient();
 });
 
-
 app.use(express.static('html'));
 
 app.get('/', function(req, res){
+	res.header("Access-Control-Allow-Origin", "*");
 	res.sendFile(path.resolve(__dirname, 'html','index.html'))
 });
 
 function startRPCClient() {
+	
 	console.log('starting rpc client');
 	var data = JSON.parse(fs.readFileSync('credentials.json', 'utf8'));
 
@@ -62,8 +59,6 @@ function startRPCClient() {
 }
 
 /*
-
-
 */
 
 
