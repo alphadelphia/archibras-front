@@ -7,20 +7,49 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 //console.log('Hello from App.js');
+/*
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'test');
+xhr.onload = function() {
+    if (xhr.status === 200) {
+        alert('test : ' + xhr.responseText);
+    }
+    else {
+        alert('Request failed.  Returned status of ' + xhr.status);
+    }
+};
+xhr.send();
+*/
 
-const App = () => (
-	<Layout/>
-)
+class App extends React.Component {
 
-//LAYOUT ELEMENTS
+	componentWillMount() {
+	}
+
+	render () {
+		return (
+			<div id="container">
+		    <Header/>
+		    <main>
+		      <UIButtonCol/>
+		      <div className="middle">
+		      	<UIDisplayPanel/>
+		      	<UIWalletPanel/>
+		      </div>  
+		      <UiInfoCol />
+		    </main>
+		  </div>
+		);
+	}
+}
 
 const Header = () => (
   <header>
-  <h1>Hello Harmony!</h1>
+  <h1>Harmonian</h1>
   </header>
 )
 
-const Left = () => (
+const UIButtonCol = (props) => (
   <div className="left">
       <div id="buttons">
         <ul className="menu">
@@ -30,25 +59,20 @@ const Left = () => (
   </div>
 )  
 
-const Middle = () => ( 
-  <div className="middle">
-
+const UIDisplayPanel = (props) => ( 
+  <div className="middle-upper">
+  		Display UI
   </div>
 )
 
-const Right = () => (
+const UIWalletPanel = (props) => ( 
+  <div className="middle-lower">
+  		Wallet UI
+  </div>
+)
+
+const UiInfoCol = (props) => (
    <div className="right"></div>
-)
-
-const Layout = () => (
-  <div id="container">
-    <Header/>
-    <main>
-      <Left/>
-      <Middle/>
-      <Right/>
-    </main>
-  </div>
 )
 
 const destination = document.getElementById("app");

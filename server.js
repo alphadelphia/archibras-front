@@ -24,17 +24,34 @@ https.createServer(options, app).listen(8144, function() {
 });
 */
 
+
 var http = require('http');
 http.createServer(app).listen(8080, function() {
 	console.log("Harmonian: http web server listening on port 8080");
-	startRPCClient();
+	
+    startRPCClient();
+
 });
 
 app.use(express.static('html'));
 
 app.get('/', function(req, res){
 	res.header("Access-Control-Allow-Origin", "*");
-	res.sendFile(path.resolve(__dirname, 'html','index.html'))
+	res.sendFile(path.resolve(__dirname, 'html','index.html'));
+});
+
+app.get('/test', function(req, res){
+
+	var info;
+
+	rpc.cmd('getinfo', function(err, getInfo, resHeaders){
+	  if (err) return console.log(err);
+	  info = getInfo;
+	  //console.log('Running Harmonian client version' + info.version);
+	  res.send('Running Harmonian client version' + info.version);
+	});
+
+	
 });
 
 function startRPCClient() {
@@ -49,12 +66,6 @@ function startRPCClient() {
 	  pass: data.pass,
 	  //ssl: true,
 	  timeout: 30000
-	});
-
-	rpc.cmd('getinfo', function(err, getInfo, resHeaders){
-	  if (err) return console.log(err);
-	  var info = getInfo;
-	  console.log('Running Harmonian client version' + info.version);
 	});
 }
 
