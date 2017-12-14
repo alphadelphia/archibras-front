@@ -5,6 +5,7 @@ React App
 "use strict"
 import React from 'react';  
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
 
 //console.log('Hello from App.js');
 /*
@@ -28,24 +29,27 @@ class App extends React.Component {
 
 	render () {
 		return (
+		<Router>
 			<div id="container">
-		    <Header/>
-		    <main>
-		      <UIButtonCol/>
-		      <div className="middle">
-		      	<UIDisplayPanel/>
-		      	<UIWalletPanel/>
-		      </div>  
-		      <UiInfoCol />
-		    </main>
+			    <Header/>
+			    <main>
+			      <UIButtonCol/>
+			      <div className="middle">
+			      	<UIDisplayPanel/>
+			      	<UIWalletPanel/>
+			      </div>  
+			      <UiInfoCol />
+			    </main>
 		  </div>
+	  	</Router>
 		);
 	}
 }
+export default withRouter(App);
 
 const Header = () => (
   <header>
-  <h1>Harmonian</h1>
+  	<h1>Harmonian</h1>
   </header>
 )
 
@@ -53,7 +57,9 @@ const UIButtonCol = (props) => (
   <div className="left">
       <div id="buttons">
         <ul className="menu">
-          <li><a href="">Info</a></li><br/>
+          <li><Link to="/">Wallet transactions</Link></li><br/>
+          <li><Link to="/send">Send sous</Link></li><br/>
+          <li><Link to="/receive">Receive sous</Link></li><br/>
         </ul>
       </div>            
   </div>
@@ -67,8 +73,25 @@ const UIDisplayPanel = (props) => (
 
 const UIWalletPanel = (props) => ( 
   <div className="middle-lower">
-  		Wallet UI
+  	<Switch>
+      <Route exact path='/' component={TransactionsUi}/>
+      <Route path='/receive' component={ReceiveUi}/>
+      <Route path='/send' component={SendUi}/>
+      <Route path='/transactions' component={TransactionsUi}/>
+    </Switch>
   </div>
+)
+
+const TransactionsUi = (props) => (
+	"TransactionsUi"
+)
+
+const SendUi = (props) => (
+	"SendUi"
+)
+
+const ReceiveUi = (props) => (
+	"ReceiveUi"
 )
 
 const UiInfoCol = (props) => (
