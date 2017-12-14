@@ -73,8 +73,35 @@ footer {
   border-radius: 10px;
   padding: 10px;
 }
-.button {
-  background-color: #0d69b2;
-  color: #ffffff;
-  /*TODO border, rounding*/
+
+.menu {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 8px 3px 8px 8px;
 }
+
+.menu li {
+  background-color: #49274a; 
+  border: 1px solid #fff;
+  border-radius:5px; 
+  color: white;
+  padding: 8px 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 3px;
+  display: inline-block;
+  width: 90%;
+}
+
+a:link, a:visited {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+   color: yellow;
+}
+
+

@@ -1,6 +1,5 @@
 node_modules
 yarn.lock
-bundle.js
+html/bundle.js
 
 ssl/*
-!ssl/.keep
