@@ -2349,21 +2349,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//console.log('Hello from App.js');
-/*
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'test');
-xhr.onload = function() {
-    if (xhr.status === 200) {
-        alert('test : ' + xhr.responseText);
-    }
-    else {
-        alert('Request failed.  Returned status of ' + xhr.status);
-    }
-};
-xhr.send();
-*/
-
 var infodata = {
   "version": "v0.0.0.1-unk-alpha",
   "protocolversion": 70001,
@@ -2393,46 +2378,36 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-    _this.fetchData = function (path) {
-
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', path);
-      xhr.onload = function () {
-        var _this2 = this;
-
-        if (xhr.status === 200) {
-
-          (function () {
-            return _this2.setState({ path: "BLAA" });
-          });
-          console.log("fetchdata :" + path, JSON.parse(xhr.responseText));
-          //return xhr.responseText;
-        } else {
-          alert('Request failed.  Returned status of ' + xhr.status);
-        }
-      };
-      xhr.send();
-    };
-
     _this.state = {
       message: '',
       info: ''
     };
-
     return _this;
   }
 
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.fetchData("message");
-      //this.setState({ message: this.fetchData("message")});
-      this.setState({ info: infodata });
+      var _this2 = this;
+
+      var url = 'http://localhost:8080/';
+
+      fetch(url + 'message').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({ message: data });
+      });
+
+      fetch(url + 'info').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({ info: data });
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.state);
+      //console.log(this.state);
       return _react2.default.createElement(
         _reactRouterDom.BrowserRouter,
         null,
@@ -2493,27 +2468,27 @@ var UIInfoPanel = function UIInfoPanel(props) {
       null,
       'Wallet info'
     ),
-    _react2.default.createElement(
+    typeof props.info !== "undefined" && _react2.default.createElement(
       'p',
       null,
-      'Balance : ',
-      props ? props.info.balance : '',
+      'Balance: ',
+      props.info.balance,
       ' SOU ',
       _react2.default.createElement('br', null),
-      'Stake : ',
-      props.info.stake ? props.info.stake : '',
+      'Stake: ',
+      props.info.stake,
       ' SOU ',
       _react2.default.createElement('br', null),
-      'Blocks : ',
-      props.info.blocks ? props.info.blocks : '',
+      'Blocks: ',
+      props.info.blocks,
       ' ',
       _react2.default.createElement('br', null),
-      'IP : ',
-      props.info.ip ? props.info.ip : '',
+      'IP: ',
+      props.info.ip,
       ' ',
       _react2.default.createElement('br', null),
-      'Connections : ',
-      props.info.connections ? props.info.connections : '',
+      'Connections: ',
+      props.info.connections,
       ' ',
       _react2.default.createElement('br', null)
     )

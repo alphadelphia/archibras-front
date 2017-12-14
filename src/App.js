@@ -7,21 +7,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
 
-//console.log('Hello from App.js');
-/*
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'test');
-xhr.onload = function() {
-    if (xhr.status === 200) {
-        alert('test : ' + xhr.responseText);
-    }
-    else {
-        alert('Request failed.  Returned status of ' + xhr.status);
-    }
-};
-xhr.send();
-*/
-
 const infodata = {
     "version" : "v0.0.0.1-unk-alpha",
     "protocolversion" : 70001,
@@ -50,57 +35,47 @@ class App extends React.Component {
     this.state = { 
       message:'', 
       info:''
-    };
-    
+    };   
   }
 
 	componentDidMount() {
-    this.fetchData("message");
-    //this.setState({ message: this.fetchData("message")});
-    this.setState({ info: infodata});
+    const url = 'http://localhost:8080/';
+   
+    fetch(url + 'message')
+    .then((res) => res.json())
+    .then((data) => {
+      this.setState({ message: data});
+    })
+
+    fetch(url + 'info')
+    .then((res) => res.json())
+    .then((data) => {
+      this.setState({ info: data});
+    })
 	}
 
-  fetchData = (path) => { 
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', path);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-           
-           () => this.setState({ path : "BLAA"});
-           console.log("fetchdata :" + path, JSON.parse(xhr.responseText));
-           //return xhr.responseText;
-           
-        }
-        else {
-            alert('Request failed.  Returned status of ' + xhr.status);
-        }
-    };
-    xhr.send();
-  }
-
 	render () {
-    console.log(this.state);
+    //console.log(this.state);
 		return (
-		<Router>
-			<div id="container">
-			    <Header/>
-			    <main>
-			      <div className="left">
-              <UIInfoPanel info={this.state.info} /> 
-              <UIButtonPanel />
-            </div>
-			      <div className="middle">
-			      	<UIDisplayPanel/>
-			      	<UIWalletPanel/>
-			      </div>  
-            <div className="right">
+  		<Router>
+  			<div id="container">
+  			    <Header/>
+  			    <main>
+  			      <div className="left">
+                <UIInfoPanel info={this.state.info} /> 
+                <UIButtonPanel />
+              </div>
+  			      <div className="middle">
+  			      	<UIDisplayPanel/>
+  			      	<UIWalletPanel/>
+  			      </div>  
+              <div className="right">
 
-			        <UIMessagePanel message={this.state.message}/>
-            </div>
-			    </main>
-		  </div>
-	  	</Router>
+  			        <UIMessagePanel message={this.state.message}/>
+              </div>
+  			    </main>
+  		  </div>
+  	  </Router>
 		);
 	}
 }
@@ -115,13 +90,16 @@ const Header = () => (
 const UIInfoPanel = (props) => (
    <div id="info">
    <h3>Wallet info</h3>
+   {typeof props.info !== "undefined" &&
     <p>   
-      Balance : {props ? props.info.balance : ''} SOU <br/>
-      Stake : {props.info.stake ? props.info.stake : ''} SOU <br/>
-      Blocks : {props.info.blocks ? props.info.blocks : ''} <br/>
-      IP : {props.info.ip ? props.info.ip : ''} <br/>
-      Connections : {props.info.connections ? props.info.connections : ''} <br/>
+      Balance: {props.info.balance} SOU <br/>
+      Stake: {props.info.stake} SOU <br/>
+      Blocks: {props.info.blocks } <br/>
+      IP: {props.info.ip} <br/>
+      Connections: {props.info.connections } <br/>
+   
     </p>
+   } 
   </div>
 )
 

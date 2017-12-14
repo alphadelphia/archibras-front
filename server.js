@@ -40,15 +40,14 @@ app.get('/', function(req, res){
 	res.sendFile(path.resolve(__dirname, 'html','index.html'));
 });
 
-app.get('/test', function(req, res){
+app.get('/info', function(req, res){
 
 	var info;
 
 	rpc.cmd('getinfo', function(err, getInfo, resHeaders){
 	  if (err) return console.log(err);
 	  info = getInfo;
-	  //console.log('Running Harmonian client version' + info.version);
-	  res.send('Running Harmonian client version' + info.version);
+	  res.send(info);
 	});
 });
 
