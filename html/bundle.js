@@ -2389,14 +2389,14 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             'main',
             null,
-            _react2.default.createElement(UIButtonCol, null),
+            _react2.default.createElement(UILeftCol, null),
             _react2.default.createElement(
               'div',
               { className: 'middle' },
               _react2.default.createElement(UIDisplayPanel, null),
               _react2.default.createElement(UIWalletPanel, null)
             ),
-            _react2.default.createElement(UiInfoCol, null)
+            _react2.default.createElement(UIRightCol, null)
           )
         )
       );
@@ -2421,10 +2421,19 @@ var Header = function Header() {
   );
 };
 
-var UIButtonCol = function UIButtonCol(props) {
+var UILeftCol = function UILeftCol(props) {
   return _react2.default.createElement(
     'div',
     { className: 'left' },
+    _react2.default.createElement(
+      'div',
+      { id: 'info' },
+      _react2.default.createElement(
+        'p',
+        null,
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+      )
+    ),
     _react2.default.createElement(
       'div',
       { id: 'buttons' },
@@ -2470,7 +2479,7 @@ var UIDisplayPanel = function UIDisplayPanel(props) {
   return _react2.default.createElement(
     'div',
     { className: 'middle-upper' },
-    'Display UI'
+    _react2.default.createElement('div', { id: 'video' })
   );
 };
 
@@ -2501,8 +2510,20 @@ var ReceiveUi = function ReceiveUi(props) {
   return "ReceiveUi";
 };
 
-var UiInfoCol = function UiInfoCol(props) {
-  return _react2.default.createElement('div', { className: 'right' });
+var UIRightCol = function UIRightCol(props) {
+  return _react2.default.createElement(
+    'div',
+    { className: 'right' },
+    _react2.default.createElement(
+      'div',
+      { id: 'message' },
+      _react2.default.createElement(
+        'p',
+        null,
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+      )
+    )
+  );
 };
 
 var destination = document.getElementById("app");

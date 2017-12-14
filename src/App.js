@@ -33,12 +33,12 @@ class App extends React.Component {
 			<div id="container">
 			    <Header/>
 			    <main>
-			      <UIButtonCol/>
+			      <UILeftCol/>
 			      <div className="middle">
 			      	<UIDisplayPanel/>
 			      	<UIWalletPanel/>
 			      </div>  
-			      <UiInfoCol />
+			      <UIRightCol/>
 			    </main>
 		  </div>
 	  	</Router>
@@ -53,8 +53,13 @@ const Header = () => (
   </header>
 )
 
-const UIButtonCol = (props) => (
+const UILeftCol = (props) => (
   <div className="left">
+      <div id="info">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        </p>
+      </div>
       <div id="buttons">
         <ul className="menu">
           <li><Link to="/">Wallet transactions</Link></li><br/>
@@ -67,7 +72,8 @@ const UIButtonCol = (props) => (
 
 const UIDisplayPanel = (props) => ( 
   <div className="middle-upper">
-  		Display UI
+  		<div id="video">
+      </div>
   </div>
 )
 
@@ -94,8 +100,14 @@ const ReceiveUi = (props) => (
 	"ReceiveUi"
 )
 
-const UiInfoCol = (props) => (
-   <div className="right"></div>
+const UIRightCol = (props) => (
+   <div className="right">
+    <div id="message">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        </p>
+      </div>
+   </div>
 )
 
 const destination = document.getElementById("app");
