@@ -50,8 +50,10 @@ app.get('/test', function(req, res){
 	  //console.log('Running Harmonian client version' + info.version);
 	  res.send('Running Harmonian client version' + info.version);
 	});
+});
 
-	
+app.get('/message', function(req,res) {
+	res.send('{"msg" : "Welcome to Harmonian!"}');
 });
 
 function startRPCClient() {

@@ -2364,21 +2364,75 @@ xhr.onload = function() {
 xhr.send();
 */
 
+var infodata = {
+  "version": "v0.0.0.1-unk-alpha",
+  "protocolversion": 70001,
+  "walletversion": 10500,
+  "balance": 0.00000000,
+  "newmint": 14138.02000000,
+  "stake": 0.00000000,
+  "blocks": 10,
+  "moneysupply": 35331.36000000,
+  "timeoffset": 0,
+  "connections": 0,
+  "proxy": "",
+  "ip": "0.0.0.0",
+  "difficulty": 0.25157969,
+  "testnet": true,
+  "keypoololdest": 1513166542,
+  "keypoolsize": 104,
+  "paytxfee": 0.01000000,
+  "errors": ""
+};
+
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
   function App() {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+    _this.fetchData = function (path) {
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', path);
+      xhr.onload = function () {
+        var _this2 = this;
+
+        if (xhr.status === 200) {
+
+          (function () {
+            return _this2.setState({ path: "BLAA" });
+          });
+          console.log("fetchdata :" + path, JSON.parse(xhr.responseText));
+          //return xhr.responseText;
+        } else {
+          alert('Request failed.  Returned status of ' + xhr.status);
+        }
+      };
+      xhr.send();
+    };
+
+    _this.state = {
+      message: '',
+      info: ''
+    };
+
+    return _this;
   }
 
   _createClass(App, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {}
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.fetchData("message");
+      //this.setState({ message: this.fetchData("message")});
+      this.setState({ info: infodata });
+    }
   }, {
     key: 'render',
     value: function render() {
+      console.log(this.state);
       return _react2.default.createElement(
         _reactRouterDom.BrowserRouter,
         null,
@@ -2389,14 +2443,23 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             'main',
             null,
-            _react2.default.createElement(UILeftCol, null),
+            _react2.default.createElement(
+              'div',
+              { className: 'left' },
+              _react2.default.createElement(UIInfoPanel, { info: this.state.info }),
+              _react2.default.createElement(UIButtonPanel, null)
+            ),
             _react2.default.createElement(
               'div',
               { className: 'middle' },
               _react2.default.createElement(UIDisplayPanel, null),
               _react2.default.createElement(UIWalletPanel, null)
             ),
-            _react2.default.createElement(UIRightCol, null)
+            _react2.default.createElement(
+              'div',
+              { className: 'right' },
+              _react2.default.createElement(UIMessagePanel, { message: this.state.message })
+            )
           )
         )
       );
@@ -2421,56 +2484,79 @@ var Header = function Header() {
   );
 };
 
-var UILeftCol = function UILeftCol(props) {
+var UIInfoPanel = function UIInfoPanel(props) {
   return _react2.default.createElement(
     'div',
-    { className: 'left' },
+    { id: 'info' },
     _react2.default.createElement(
-      'div',
-      { id: 'info' },
-      _react2.default.createElement(
-        'p',
-        null,
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      )
+      'h3',
+      null,
+      'Wallet info'
     ),
     _react2.default.createElement(
-      'div',
-      { id: 'buttons' },
+      'p',
+      null,
+      'Balance : ',
+      props ? props.info.balance : '',
+      ' SOU ',
+      _react2.default.createElement('br', null),
+      'Stake : ',
+      props.info.stake ? props.info.stake : '',
+      ' SOU ',
+      _react2.default.createElement('br', null),
+      'Blocks : ',
+      props.info.blocks ? props.info.blocks : '',
+      ' ',
+      _react2.default.createElement('br', null),
+      'IP : ',
+      props.info.ip ? props.info.ip : '',
+      ' ',
+      _react2.default.createElement('br', null),
+      'Connections : ',
+      props.info.connections ? props.info.connections : '',
+      ' ',
+      _react2.default.createElement('br', null)
+    )
+  );
+};
+
+var UIButtonPanel = function UIButtonPanel() {
+  return _react2.default.createElement(
+    'div',
+    { id: 'buttons' },
+    _react2.default.createElement(
+      'ul',
+      { className: 'menu' },
       _react2.default.createElement(
-        'ul',
-        { className: 'menu' },
+        'li',
+        null,
         _react2.default.createElement(
-          'li',
-          null,
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/' },
-            'Wallet transactions'
-          )
-        ),
-        _react2.default.createElement('br', null),
+          _reactRouterDom.Link,
+          { to: '/' },
+          'Wallet transactions'
+        )
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        'li',
+        null,
         _react2.default.createElement(
-          'li',
-          null,
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/send' },
-            'Send sous'
-          )
-        ),
-        _react2.default.createElement('br', null),
+          _reactRouterDom.Link,
+          { to: '/send' },
+          'Send sous'
+        )
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        'li',
+        null,
         _react2.default.createElement(
-          'li',
-          null,
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/receive' },
-            'Receive sous'
-          )
-        ),
-        _react2.default.createElement('br', null)
-      )
+          _reactRouterDom.Link,
+          { to: '/receive' },
+          'Receive sous'
+        )
+      ),
+      _react2.default.createElement('br', null)
     )
   );
 };
@@ -2510,18 +2596,14 @@ var ReceiveUi = function ReceiveUi(props) {
   return "ReceiveUi";
 };
 
-var UIRightCol = function UIRightCol(props) {
+var UIMessagePanel = function UIMessagePanel(props) {
   return _react2.default.createElement(
     'div',
-    { className: 'right' },
+    { id: 'message' },
     _react2.default.createElement(
-      'div',
-      { id: 'message' },
-      _react2.default.createElement(
-        'p',
-        null,
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      )
+      'p',
+      null,
+      typeof props.message !== "undefined" ? props.message.msg : ''
     )
   );
 };

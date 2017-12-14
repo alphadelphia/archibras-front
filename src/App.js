@@ -22,23 +22,82 @@ xhr.onload = function() {
 xhr.send();
 */
 
+const infodata = {
+    "version" : "v0.0.0.1-unk-alpha",
+    "protocolversion" : 70001,
+    "walletversion" : 10500,
+    "balance" : 0.00000000,
+    "newmint" : 14138.02000000,
+    "stake" : 0.00000000,
+    "blocks" : 10,
+    "moneysupply" : 35331.36000000,
+    "timeoffset" : 0,
+    "connections" : 0,
+    "proxy" : "",
+    "ip" : "0.0.0.0",
+    "difficulty" : 0.25157969,
+    "testnet" : true,
+    "keypoololdest" : 1513166542,
+    "keypoolsize" : 104,
+    "paytxfee" : 0.01000000,
+    "errors" : ""
+  };
+
 class App extends React.Component {
 
-	componentWillMount() {
+  constructor() {
+    super();
+    this.state = { 
+      message:'', 
+      info:''
+    };
+    
+  }
+
+	componentDidMount() {
+    this.fetchData("message");
+    //this.setState({ message: this.fetchData("message")});
+    this.setState({ info: infodata});
 	}
 
+  fetchData = (path) => { 
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', path);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+           
+           () => this.setState({ path : "BLAA"});
+           console.log("fetchdata :" + path, JSON.parse(xhr.responseText));
+           //return xhr.responseText;
+           
+        }
+        else {
+            alert('Request failed.  Returned status of ' + xhr.status);
+        }
+    };
+    xhr.send();
+  }
+
 	render () {
+    console.log(this.state);
 		return (
 		<Router>
 			<div id="container">
 			    <Header/>
 			    <main>
-			      <UILeftCol/>
+			      <div className="left">
+              <UIInfoPanel info={this.state.info} /> 
+              <UIButtonPanel />
+            </div>
 			      <div className="middle">
 			      	<UIDisplayPanel/>
 			      	<UIWalletPanel/>
 			      </div>  
-			      <UIRightCol/>
+            <div className="right">
+
+			        <UIMessagePanel message={this.state.message}/>
+            </div>
 			    </main>
 		  </div>
 	  	</Router>
@@ -53,22 +112,28 @@ const Header = () => (
   </header>
 )
 
-const UILeftCol = (props) => (
-  <div className="left">
-      <div id="info">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        </p>
-      </div>
-      <div id="buttons">
-        <ul className="menu">
-          <li><Link to="/">Wallet transactions</Link></li><br/>
-          <li><Link to="/send">Send sous</Link></li><br/>
-          <li><Link to="/receive">Receive sous</Link></li><br/>
-        </ul>
-      </div>            
+const UIInfoPanel = (props) => (
+   <div id="info">
+   <h3>Wallet info</h3>
+    <p>   
+      Balance : {props ? props.info.balance : ''} SOU <br/>
+      Stake : {props.info.stake ? props.info.stake : ''} SOU <br/>
+      Blocks : {props.info.blocks ? props.info.blocks : ''} <br/>
+      IP : {props.info.ip ? props.info.ip : ''} <br/>
+      Connections : {props.info.connections ? props.info.connections : ''} <br/>
+    </p>
   </div>
-)  
+)
+
+const UIButtonPanel = () => (
+  <div id="buttons">
+    <ul className="menu">
+      <li><Link to="/">Wallet transactions</Link></li><br/>
+      <li><Link to="/send">Send sous</Link></li><br/>
+      <li><Link to="/receive">Receive sous</Link></li><br/>
+    </ul>
+  </div>     
+)
 
 const UIDisplayPanel = (props) => ( 
   <div className="middle-upper">
@@ -100,14 +165,12 @@ const ReceiveUi = (props) => (
 	"ReceiveUi"
 )
 
-const UIRightCol = (props) => (
-   <div className="right">
+const UIMessagePanel = (props) => (
     <div id="message">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          {typeof props.message !== "undefined" ? props.message.msg : '' }
         </p>
-      </div>
-   </div>
+    </div>
 )
 
 const destination = document.getElementById("app");
