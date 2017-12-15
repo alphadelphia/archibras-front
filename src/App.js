@@ -7,26 +7,145 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
 
-const infodata = {
-    "version" : "v0.0.0.1-unk-alpha",
-    "protocolversion" : 70001,
-    "walletversion" : 10500,
-    "balance" : 0.00000000,
-    "newmint" : 14138.02000000,
-    "stake" : 0.00000000,
-    "blocks" : 10,
-    "moneysupply" : 35331.36000000,
-    "timeoffset" : 0,
-    "connections" : 0,
-    "proxy" : "",
-    "ip" : "0.0.0.0",
-    "difficulty" : 0.25157969,
-    "testnet" : true,
-    "keypoololdest" : 1513166542,
-    "keypoolsize" : 104,
-    "paytxfee" : 0.01000000,
-    "errors" : ""
-  };
+/*
+[{
+        "account" : "",
+        "address" : "mkx3xd4mACBap88fWhpBvm6ypd8YkJjC3n",
+        "category" : "immature",
+        "amount" : 9744.78000000,
+        "confirmations" : 4,
+        "generated" : true,
+        "blockhash" : "00007e684980aa9ea23a615b63c2cb9ff2a2f7d3be6b56e8429f60b75336ba7b",
+        "blockindex" : 0,
+        "blocktime" : 1513345871,
+        "txid" : "51cf44cb803cf46335013f6b7652f427e1c56f002c488ab3d64d151e95bb7d43",
+        "time" : 1513345863,
+        "timereceived" : 1513345863}, 
+        {
+        "account" : "",
+        "address" : "n1gmdLS1Dazdd4mQVitgwfTTntqDaAtQ4Q",
+        "category" : "immature",        "confirmations" : 1,
+
+        "amount" : 9741.38000000,
+        "confirmations" : 3,
+        "generated" : true,
+        "blockhash" : "0000a985e0f99bd919217fc7cf363777efd1051a8fc8426b6dface9251b8307a",
+        "blockindex" : 0,
+        "blocktime" :{
+   
+        "txid" : "45b75138f52d23c1650b35c08a26eeb4fe8c68638c617b9df8a919c7ef1cea29",
+        "time" : 1513345863,
+        "timereceived" : 1513345863
+    },{
+        "account" : "",
+        "address" : "mzgTYEoQF7ZPnvkM53b6zyUHEGCEUxpcaK",
+        "category" : "immature",
+        "amount" : 9737.99000000,
+        "confirmations" : 2,
+        "generated" : true,
+        "blockhash" : "0000e3df5f3c8da0f2bd54f0051ff9685024aaf7afbfab5e240070e277812f96",
+        "blockindex" : 0,
+        "blocktime" : 1513345871,
+        "txid" : "e66ee959ba86678670a950a397602dab804fcd5056d0ee6c4e5fd170ba41bd22",
+        "time" : 1513345863,
+        "timereceived" : 1513345863
+    },{
+        "account" : "",
+        "address" : "n4EN1d3muBwz8wnHknDqcTyEMjy4sZmLFz",
+        "category" : "immature",
+        "amount" : 9734.61000000,
+        "confirmations" : 1,
+        "generated" : true,
+        "blockhash" : "00006ed22e492475b6a022c184730a7fc83a26d551ab00e2851cd3e42f148d9d",
+        "blockindex" : 0,
+        "blocktime" : 1513345871,
+        "txid" : "c989e62d61f3443d6538a2b010fb253a69893e508e04e18cead188c914470b86",
+        "time" : 1513345863,
+        "timereceived" : 1513345863
+    },
+    {
+        "account" : "",
+        "address" : "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
+        "category" : "send",
+        "amount" : -10000.00000000,
+        "fee" : -0.01000000,
+        "confirmations" : 0,
+        "txid" : "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
+        "time" : 1513346424,
+        "timereceived" : 1513346424
+    }
+
+]";
+
+var gettransaction_gen = {
+    "amount" : 0.00000000,
+    "confirmations" : 4,
+    "generated" : true,
+    "blockhash" : "00007e684980aa9ea23a615b63c2cb9ff2a2f7d3be6b56e8429f60b75336ba7b",
+    "blockindex" : 0,
+    "blocktime" : 1513345871,
+    "txid" : "51cf44cb803cf46335013f6b7652f427e1c56f002c488ab3d64d151e95bb7d43",
+    "time" : 1513345863,
+    "timereceived" : 1513345863,
+    "details" : [
+        {
+            "account" : "",
+            "address" : "mkx3xd4mACBap88fWhpBvm6ypd8YkJjC3n",
+            "category" : "immature",
+            "amount" : 9744.78000000
+        }
+    ]
+};
+
+var gettransaction_send = {
+    "amount" : -10000.00000000,
+    "fee" : -0.01000000,
+    "confirmations" : 0,
+    "txid" : "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
+    "time" : 1513346424,
+    "timereceived" : 1513346424,
+    "details" : [
+        {
+            "account" : "",
+            "address" : "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
+            "category" : "send",
+            "amount" : -10000.00000000,
+            "fee" : -0.01000000
+        }
+    ]
+}
+
+var listtransaction_rec = {
+    account" : "",
+        "address" : "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
+        "category" : "receive",
+        "amount" : 10000.00000000,
+        "confirmations" : 0,
+        "txid" : "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
+        "time" : 1513346424,
+        "timereceived" : 1513346424
+    
+}
+
+var gettransaction_rec = {
+        {
+    "amount" : 10000.00000000,
+    "confirmations" : 0,
+    "txid" : "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
+    "time" : 1513346424,
+    "timereceived" : 1513346424,
+    "details" : [
+        {
+            "account" : "",
+            "address" : "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
+            "category" : "receive",
+            "amount" : 10000.00000000
+        }
+    
+}
+
+*/
+
 
 class App extends React.Component {
 

@@ -45,7 +45,9 @@ app.get('/info', function(req, res){
 	var info;
 
 	rpc.cmd('getinfo', function(err, getInfo, resHeaders){
-	  if (err) return console.log(err);
+	  if (err) {
+	  	return console.log(err);
+	  }	
 	  info = getInfo;
 	  res.send(info);
 	});
