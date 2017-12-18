@@ -66,9 +66,6 @@ app.get('/txlist', function(req, res){
 	});
 });
 
-
-
-
 app.get('/message', function(req,res) {
 	res.send('{"msg" : "Welcome to Harmonian!"}');
 });

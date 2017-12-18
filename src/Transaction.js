@@ -11,11 +11,6 @@ class Transaction extends React.Component {
 	    this.setIcon(this.props.data.category);
   	}
 
-	componentDidMount() {
-		
-
-	}
-
 	setIcon = (category) => {
 		switch(category) {
 			case "immature" :
@@ -39,13 +34,6 @@ class Transaction extends React.Component {
 		}
 		
 	}
-
-    toLocalDate = (inDate) => {
-    	console.log(inDate);
-    	var date = new Date();
-    	date.setTime(inDate.valueOf() + 60000 * inDate.getTimezoneOffset());
-    	return date.toDateString();
-	}	
 
 	render() {
 		let date = new Date(this.props.data.time * 1000);

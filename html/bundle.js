@@ -2326,7 +2326,7 @@ React App
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2361,7 +2361,7 @@ var gettransaction_gen = {
     "generated" : true,
     "blockhash" : "00007e684980aa9ea23a615b63c2cb9ff2a2f7d3be6b56e8429f60b75336ba7b",
     "blockindex" : 0,
-    "blohttps://www.facebook.com/cktime" : 1513345871,
+    "blocktime" : 1513345871,
     "txid" : "51cf44cb803cf46335013f6b7652f427e1c56f002c488ab3d64d151e95bb7d43",
     "time" : 1513345863,
     "timereceived" : 1513345863,
@@ -2393,18 +2393,6 @@ var gettransaction_send = {
     ]
 }
 
-var listtransaction_rec = {
-    account" : "",
-        "address" : "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
-        "category" : "receive",
-        "amount" : 10000.00000000,
-        "confirmations" : 0,
-        "txid" : "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
-        "time" : 1513346424,
-        "timereceived" : 1513346424
-    
-}
-
 var gettransaction_rec = {
         {
     "amount" : 10000.00000000,
@@ -2425,217 +2413,212 @@ var gettransaction_rec = {
 */
 
 var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+  _inherits(App, _React$Component);
 
-    function App() {
-        _classCallCheck(this, App);
+  function App() {
+    _classCallCheck(this, App);
 
-        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-        _this.state = {
-            message: '',
-            info: ''
-        };
-        return _this;
+    _this.state = {
+      message: '',
+      info: ''
+    };
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var url = 'http://localhost:8080/';
+
+      fetch(url + 'message').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({ message: data });
+      });
+
+      fetch(url + 'info').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({ info: data });
+      });
     }
+  }, {
+    key: 'render',
+    value: function render() {
+      //console.log(this.state);
+      return _react2.default.createElement(
+        _reactRouterDom.BrowserRouter,
+        null,
+        _react2.default.createElement(
+          'div',
+          { id: 'container' },
+          _react2.default.createElement(Header, null),
+          _react2.default.createElement(
+            'main',
+            null,
+            _react2.default.createElement(
+              'div',
+              { className: 'left' },
+              _react2.default.createElement(UIInfoPanel, { info: this.state.info }),
+              _react2.default.createElement(UIButtonPanel, null)
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'middle' },
+              _react2.default.createElement(UIDisplayPanel, null),
+              _react2.default.createElement(UIWalletPanel, null)
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'right' },
+              _react2.default.createElement(UIMessagePanel, { message: this.state.message })
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-    _createClass(App, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
-
-            var url = 'http://localhost:8080/';
-
-            fetch(url + 'message').then(function (res) {
-                return res.json();
-            }).then(function (data) {
-                _this2.setState({ message: data });
-            });
-
-            fetch(url + 'info').then(function (res) {
-                return res.json();
-            }).then(function (data) {
-                _this2.setState({ info: data });
-            });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            //console.log(this.state);
-            return _react2.default.createElement(
-                _reactRouterDom.BrowserRouter,
-                null,
-                _react2.default.createElement(
-                    'div',
-                    { id: 'container' },
-                    _react2.default.createElement(Header, null),
-                    _react2.default.createElement(
-                        'main',
-                        null,
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'left' },
-                            _react2.default.createElement(UIInfoPanel, { info: this.state.info }),
-                            _react2.default.createElement(UIButtonPanel, null)
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'middle' },
-                            _react2.default.createElement(UIDisplayPanel, null),
-                            _react2.default.createElement(UIWalletPanel, null)
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'right' },
-                            _react2.default.createElement(UIMessagePanel, { message: this.state.message })
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return App;
+  return App;
 }(_react2.default.Component);
 
 exports.default = (0, _reactRouterDom.withRouter)(App);
 
 
 var Header = function Header() {
-    return _react2.default.createElement(
-        'header',
-        null,
-        _react2.default.createElement(
-            'h1',
-            null,
-            'Harmonian'
-        )
-    );
+  return _react2.default.createElement(
+    'header',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      'Harmonian'
+    )
+  );
 };
 
 var UIInfoPanel = function UIInfoPanel(props) {
-    return _react2.default.createElement(
-        'div',
-        { id: 'info' },
-        _react2.default.createElement(
-            'h3',
-            null,
-            'Wallet info'
-        ),
-        typeof props.info !== "undefined" && _react2.default.createElement(
-            'p',
-            null,
-            'Balance: ',
-            props.info.balance,
-            ' SOU ',
-            _react2.default.createElement('br', null),
-            'Stake: ',
-            props.info.stake,
-            ' SOU ',
-            _react2.default.createElement('br', null),
-            'Blocks: ',
-            props.info.blocks,
-            ' ',
-            _react2.default.createElement('br', null),
-            'IP: ',
-            props.info.ip,
-            ' ',
-            _react2.default.createElement('br', null),
-            'Connections: ',
-            props.info.connections,
-            ' ',
-            _react2.default.createElement('br', null)
-        )
-    );
+  return _react2.default.createElement(
+    'div',
+    { id: 'info' },
+    _react2.default.createElement(
+      'h3',
+      null,
+      'Wallet info'
+    ),
+    typeof props.info !== "undefined" && _react2.default.createElement(
+      'p',
+      null,
+      'Balance: ',
+      props.info.balance,
+      ' SOU ',
+      _react2.default.createElement('br', null),
+      'Stake: ',
+      props.info.stake,
+      ' SOU ',
+      _react2.default.createElement('br', null),
+      'Blocks: ',
+      props.info.blocks,
+      ' ',
+      _react2.default.createElement('br', null),
+      'IP: ',
+      props.info.ip,
+      ' ',
+      _react2.default.createElement('br', null),
+      'Connections: ',
+      props.info.connections,
+      ' ',
+      _react2.default.createElement('br', null)
+    )
+  );
 };
 
 var UIButtonPanel = function UIButtonPanel() {
-    return _react2.default.createElement(
-        'div',
-        { id: 'buttons' },
+  return _react2.default.createElement(
+    'div',
+    { id: 'buttons' },
+    _react2.default.createElement(
+      'ul',
+      { className: 'menu' },
+      _react2.default.createElement(
+        'li',
+        null,
         _react2.default.createElement(
-            'ul',
-            { className: 'menu' },
-            _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/' },
-                    'Wallet transactions'
-                )
-            ),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/send' },
-                    'Send sous'
-                )
-            ),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/receive' },
-                    'Receive sous'
-                )
-            ),
-            _react2.default.createElement('br', null)
+          _reactRouterDom.Link,
+          { to: '/' },
+          'Wallet transactions'
         )
-    );
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/send' },
+          'Send sous'
+        )
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/receive' },
+          'Receive sous'
+        )
+      ),
+      _react2.default.createElement('br', null)
+    )
+  );
 };
 
 var UIDisplayPanel = function UIDisplayPanel(props) {
-    return _react2.default.createElement(
-        'div',
-        { className: 'middle-upper' },
-        _react2.default.createElement('div', { id: 'video' })
-    );
+  return _react2.default.createElement(
+    'div',
+    { className: 'middle-upper' },
+    _react2.default.createElement('div', { id: 'video' })
+  );
 };
 
 var UIWalletPanel = function UIWalletPanel(props) {
-    return _react2.default.createElement(
-        'div',
-        { className: 'middle-lower' },
-        _react2.default.createElement(
-            _reactRouterDom.Switch,
-            null,
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _TransactionList2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/receive', component: ReceiveUi }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/send', component: SendUi }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/transactions', component: _TransactionList2.default })
-        )
-    );
+  return _react2.default.createElement(
+    'div',
+    { className: 'middle-lower' },
+    _react2.default.createElement(
+      _reactRouterDom.Switch,
+      null,
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _TransactionList2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/receive', component: ReceiveUi }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/send', component: SendUi }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/transactions', component: _TransactionList2.default })
+    )
+  );
 };
-/*
-const TransactionsList = () => (
-	
-)
-*/
 
 var SendUi = function SendUi(props) {
-    return "SendUi";
+  return "SendUi";
 };
 
 var ReceiveUi = function ReceiveUi(props) {
-    return "ReceiveUi";
+  return "ReceiveUi";
 };
 
 var UIMessagePanel = function UIMessagePanel(props) {
-    return _react2.default.createElement(
-        'div',
-        { id: 'message' },
-        _react2.default.createElement(
-            'p',
-            null,
-            typeof props.message !== "undefined" ? props.message.msg : ''
-        )
-    );
+  return _react2.default.createElement(
+    'div',
+    { id: 'message' },
+    _react2.default.createElement(
+      'p',
+      null,
+      typeof props.message !== "undefined" ? props.message.msg : ''
+    )
+  );
 };
 
 var destination = document.getElementById("app");
@@ -23665,44 +23648,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var txdata = [{
-    "account": "",
-    "address": "mzgTYEoQF7ZPnvkM53b6zyUHEGCEUxpcaK",
-    "category": "immature",
-    "amount": 9737.99000000,
-    "confirmations": 2,
-    "generated": true,
-    "blockhash": "0000e3df5f3c8da0f2bd54f0051ff9685024aaf7afbfab5e240070e277812f96",
-    "blockindex": 0,
-    "blocktime": 1513345871,
-    "txid": "e66ee959ba86678670a950a397602dab804fcd5056d0ee6c4e5fd170ba41bd22",
-    "time": 1513345863,
-    "timereceived": 1513345863
-}, {
-    "account": "",
-    "address": "n4EN1d3muBwz8wnHknDqcTyEMjy4sZmLFz",
-    "category": "immature",
-    "amount": 9734.61000000,
-    "confirmations": 1,
-    "generated": true,
-    "blockhash": "00006ed22e492475b6a022c184730a7fc83a26d551ab00e2851cd3e42f148d9d",
-    "blockindex": 0,
-    "blocktime": 1513345871,
-    "txid": "c989e62d61f3443d6538a2b010fb253a69893e508e04e18cead188c914470b86",
-    "time": 1513345863,
-    "timereceived": 1513345863
-}, {
-    "account": "",
-    "address": "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
-    "category": "send",
-    "amount": -10000.00000000,
-    "fee": -0.01000000,
-    "confirmations": 0,
-    "txid": "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
-    "time": 1513346424,
-    "timereceived": 1513346424
-}];
-
 var TransactionList = function (_React$Component) {
     _inherits(TransactionList, _React$Component);
 
@@ -23722,21 +23667,11 @@ var TransactionList = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            //this.populateTxArray();
             fetch('http://localhost:8080/txlist').then(function (res) {
                 return res.json();
             }).then(function (data) {
-                _this2.setState({ txarray: data });
+                _this2.setState({ txarray: data.reverse() }); //reverse so newest tx first in list
             });
-        }
-    }, {
-        key: 'populateTxArray',
-        value: function populateTxArray() {
-            //TODO fetch list from node, instead of test data
-            this.state.txarray = txdata.map(function (tx) {
-                return tx;
-            });
-            //console.log(this.state.txarray);
         }
     }, {
         key: 'render',
@@ -23756,17 +23691,6 @@ var TransactionList = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = TransactionList;
-
-/*
-
-const TicketList = (props) => { 
-  return (
-    <div>
-      {props.tickets.map(ticket   => <Ticket status="open" key={ticket.id} title={ticket.title} description={ticket.description} room={ticket.id}/>)}
-    </div>
-  );
-};
-*/
 
 /***/ }),
 /* 76 */
@@ -23824,13 +23748,6 @@ var Transaction = function (_React$Component) {
 			}
 		};
 
-		_this.toLocalDate = function (inDate) {
-			console.log(inDate);
-			var date = new Date();
-			date.setTime(inDate.valueOf() + 60000 * inDate.getTimezoneOffset());
-			return date.toDateString();
-		};
-
 		var iconCategory = null;
 		//var iconAsset = null;
 
@@ -23839,9 +23756,6 @@ var Transaction = function (_React$Component) {
 	}
 
 	_createClass(Transaction, [{
-		key: "componentDidMount",
-		value: function componentDidMount() {}
-	}, {
 		key: "render",
 		value: function render() {
 			var date = new Date(this.props.data.time * 1000);

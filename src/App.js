@@ -16,7 +16,7 @@ var gettransaction_gen = {
     "generated" : true,
     "blockhash" : "00007e684980aa9ea23a615b63c2cb9ff2a2f7d3be6b56e8429f60b75336ba7b",
     "blockindex" : 0,
-    "blohttps://www.facebook.com/cktime" : 1513345871,
+    "blocktime" : 1513345871,
     "txid" : "51cf44cb803cf46335013f6b7652f427e1c56f002c488ab3d64d151e95bb7d43",
     "time" : 1513345863,
     "timereceived" : 1513345863,
@@ -46,18 +46,6 @@ var gettransaction_send = {
             "fee" : -0.01000000
         }
     ]
-}
-
-var listtransaction_rec = {
-    account" : "",
-        "address" : "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
-        "category" : "receive",
-        "amount" : 10000.00000000,
-        "confirmations" : 0,
-        "txid" : "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
-        "time" : 1513346424,
-        "timereceived" : 1513346424
-    
 }
 
 var gettransaction_rec = {
@@ -184,11 +172,6 @@ const UIWalletPanel = (props) => (
     </Switch>
   </div>
 )
-/*
-const TransactionsList = () => (
-	
-)
-*/
 
 const SendUi = (props) => (
 	"SendUi"
