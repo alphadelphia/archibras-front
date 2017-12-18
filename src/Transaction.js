@@ -7,13 +7,16 @@ class Transaction extends React.Component {
 
 	    var iconCategory = null;
 	    //var iconAsset = null;
+
+	    this.setIcon(this.props.data.category);
   	}
+
 	componentDidMount() {
-		this.setIcons(this.props.category);
+		
 
 	}
 
-	setIcons = (category) => {
+	setIcon = (category) => {
 		switch(category) {
 			case "immature" :
 				
@@ -34,18 +37,31 @@ class Transaction extends React.Component {
 			default:
 				break;				
 		}
+		
 	}
 
+    toLocalDate = (inDate) => {
+    	console.log(inDate);
+    	var date = new Date();
+    	date.setTime(inDate.valueOf() + 60000 * inDate.getTimezoneOffset());
+    	return date.toDateString();
+	}	
+
 	render() {
+		let date = new Date(this.props.data.time * 1000);
+		let time = date.toString();
+		
 		return(
+			<li>
 			<div>
-				<span class="tx-left-icon">{iconCategory}></span>
-					<div class="tx-content">
-						<h2 class="tx-content-main">{this.props.amount}</h2>
-						<h3 class="tx-sub">{new Date(this.props.time)}</h3>
+				<span className = "tx-icon-left">{this.iconCategory}</span>
+					<div className = "tx-content">
+						<h2 className = "tx-main">{this.props.data.amount}</h2>
+						<h3 className = "tx-sub">{time}</h3>
 					</div>
-				<span class="tx-right-icon">R></span>
-			</div>
+			</div>		
+			</li>
+
 		);		
 	}
 

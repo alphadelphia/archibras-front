@@ -53,6 +53,22 @@ app.get('/info', function(req, res){
 	});
 });
 
+app.get('/txlist', function(req, res){
+
+	var list;
+
+	rpc.cmd('listtransactions', function(err, getList, resHeaders){
+	  if (err) {
+	  	return console.log(err);
+	  }	
+	  list = getList;
+	  res.send(list);
+	});
+});
+
+
+
+
 app.get('/message', function(req,res) {
 	res.send('{"msg" : "Welcome to Harmonian!"}');
 });

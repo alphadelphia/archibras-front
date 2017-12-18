@@ -52,17 +52,39 @@ class TransactionList extends React.Component {
   	}
 
   	componentDidMount() {
-		this.populateTxArray();
+		//this.populateTxArray();
+        fetch('http://localhost:8080/txlist')
+        .then((res) => res.json())
+        .then((data) => {
+            this.setState({ txarray: data});
+        })
 	}
 
 	populateTxArray() {
 		//TODO fetch list from node, instead of test data
 		this.state.txarray = txdata.map( (tx) => {return tx;});
-		console.log(this.state.txarray);
+		//console.log(this.state.txarray);
 	}
 
 	render() {
-		return ("txlist");
+        let list = this.state.txarray ? 
+            this.state.txarray.map(tx  => <Transaction key={tx.txid}  data={tx} />) : "";
+		return (     
+            <ul className="tx-menu">
+              {list}
+            </ul>          
+        );
 	}
 }
 export default TransactionList;
+
+/*
+
+const TicketList = (props) => { 
+  return (
+    <div>
+      {props.tickets.map(ticket   => <Ticket status="open" key={ticket.id} title={ticket.title} description={ticket.description} room={ticket.id}/>)}
+    </div>
+  );
+};
+*/
