@@ -98,10 +98,12 @@ class App extends React.Component {
 
 	render () {
     //console.log(this.state);
+    let version = this.state.info.version ? 
+      " Running Harmonian Client " + this.state.info.version : "";
 		return (
   		<Router>
   			<div id="container">
-  			    <Header/>
+  			    <Header />
   			    <main>
   			      <div className="left">
                 <UIInfoPanel info={this.state.info} /> 
@@ -113,7 +115,7 @@ class App extends React.Component {
   			      </div>  
               <div className="right">
 
-  			        <UIMessagePanel message={this.state.message}/>
+  			        <UIMessagePanel message={this.state.message} version = {version}/>
               </div>
   			    </main>
   		  </div>
@@ -123,9 +125,9 @@ class App extends React.Component {
 }
 export default withRouter(App);
 
-const Header = () => (
+const Header = (props) => (
   <header>
-  	<h1>Harmonian</h1>
+  	<span className="heading"> Harmonian </span> 
   </header>
 )
 
@@ -183,8 +185,14 @@ const ReceiveUi = (props) => (
 
 const UIMessagePanel = (props) => (
     <div id="message">
+        <h3>
+          Messages
+        </h3>
         <p>
-          {typeof props.message !== "undefined" ? props.message.msg : '' }
+        {typeof props.message !== "undefined" ? props.message.msg : '' }
+        </p>
+        <p>
+         {props.version}
         </p>
     </div>
 )

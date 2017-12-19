@@ -2450,6 +2450,7 @@ var App = function (_React$Component) {
     key: 'render',
     value: function render() {
       //console.log(this.state);
+      var version = this.state.info.version ? " Running Harmonian Client " + this.state.info.version : "";
       return _react2.default.createElement(
         _reactRouterDom.BrowserRouter,
         null,
@@ -2475,7 +2476,7 @@ var App = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'right' },
-              _react2.default.createElement(UIMessagePanel, { message: this.state.message })
+              _react2.default.createElement(UIMessagePanel, { message: this.state.message, version: version })
             )
           )
         )
@@ -2489,14 +2490,14 @@ var App = function (_React$Component) {
 exports.default = (0, _reactRouterDom.withRouter)(App);
 
 
-var Header = function Header() {
+var Header = function Header(props) {
   return _react2.default.createElement(
     'header',
     null,
     _react2.default.createElement(
-      'h1',
-      null,
-      'Harmonian'
+      'span',
+      { className: 'heading' },
+      ' Harmonian '
     )
   );
 };
@@ -2614,9 +2615,19 @@ var UIMessagePanel = function UIMessagePanel(props) {
     'div',
     { id: 'message' },
     _react2.default.createElement(
+      'h3',
+      null,
+      'Messages'
+    ),
+    _react2.default.createElement(
       'p',
       null,
       typeof props.message !== "undefined" ? props.message.msg : ''
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
+      props.version
     )
   );
 };

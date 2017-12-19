@@ -20,8 +20,13 @@ body {
 header {
   flex: 0 0 75px;
   color: #ffffff;
-  margin: 8px;
+  margin: 8px auto;
 }
+
+.heading {
+  font-size:xx-large;
+}
+
 main {
   flex: 1;
   display: flex;
@@ -47,8 +52,12 @@ footer {
 }
 
 #message {
-  text-align: center;
   padding: 5px;
+  margin: 10px;
+}
+
+#message h3 {
+  text-align: center;
 }
 
 #video {
