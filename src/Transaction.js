@@ -6,11 +6,15 @@ const Popup = (props) => {
 	 return(
       <div className='popup' >
         <div className='popup_inner'>
-          <h1>{props.text}</h1>
+          {props.text}
         </div>
       </div>
     );
 };
+
+const DataLine = (props) => {
+	return(<span>{props.k} : {props.v} <br/></span>);
+}
 
 class Transaction extends React.Component {
 
@@ -18,12 +22,21 @@ class Transaction extends React.Component {
 	    super(props);
 
 	    this.state = {
-	      showPopup: false
+	      showPopup: false,
+	      txdata: null
 	    };
 	    var iconCategory = null;
-	    //var iconAsset = null;
-
 	    this.setIcon(this.props.data.category);
+	    
+  	}
+  	
+  	componentDidMount() {
+  		let txData = Object.entries(this.props.data).map( ([key,val]) => {
+	  		return (<DataLine k={key} v={val} key={val}/>)
+	  	});
+	  	this.setState({
+	  		txdata : txData
+	  	});
   	}
 
   	togglePopup = () => {
@@ -65,27 +78,24 @@ class Transaction extends React.Component {
 		let time = date.toString();
 
 		let popup = this.state.showPopup ? 
-			 <Popup text="Close Me"/> : "";
-
-
-		//let popup = this.state.showPopup ? "POPUP" : "";
+			 <Popup text={this.state.txdata} /> : "";
 
 		return(
-			<li>
 			<div onClick={this.handleClick}>
-				<span className = "tx-icon-left">{this.iconCategory}</span>
-					<div className = "tx-content">
-						<h2 className = "tx-main">{this.props.data.amount}</h2>
-						<h3 className = "tx-sub">{time}</h3>
-					</div>
-			</div>		
+				<li>
+				<div >
+					<span className = "tx-icon-left">{this.iconCategory}</span>
+						<div className = "tx-content">
+							<h2 className = "tx-main">{this.props.data.amount}</h2>
+							<h3 className = "tx-sub">{time}</h3>
+						</div>
+				</div>		
+				</li>
 			{popup}
-			</li>
-
+			</div>
 		);		
 	}
 
 }
 export default Transaction;
 
-// <button onClick={this.togglePopup.bind(this)}>show popup</button>

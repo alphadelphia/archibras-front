@@ -215,9 +215,9 @@ a:hover, a:active {
   position: absolute;
   left: 25%;
   right: 25%;
-  top: 25%;
-  bottom: 25%;
-  margin: auto;
-  background: white;
+  top: 15%;
+  padding: 10px;
+  margin: 10px auto;
+  background: #f4decb;
 }
 
