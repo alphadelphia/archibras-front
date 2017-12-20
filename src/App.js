@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-
 
 import TransactionList from './TransactionList';
 import SendDialogue from './SendDialogue';
+import ReceiveDialogue from './ReceiveDialogue';
       
 
 class App extends React.Component {
@@ -109,15 +110,10 @@ const UIWalletPanel = (props) => (
   <div className="middle-lower">
   	<Switch>
       <Route exact path='/' component={TransactionList}/>
-      <Route path='/receive' component={ReceiveUi}/>
+      <Route path='/receive' component={ReceiveDialogue}/>
       <Route path='/send' component={SendDialogue}/>
-      <Route path='/transactions' component={TransactionList}/>
     </Switch>
   </div>
-)
-
-const ReceiveUi = (props) => (
-	"ReceiveUi"
 )
 
 const UIMessagePanel = (props) => (

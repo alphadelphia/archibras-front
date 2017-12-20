@@ -1,4 +1,5 @@
 import React from 'react'; 
+import Alert from './Alert';
 
 class SendDialogue extends React.Component {
 
@@ -38,7 +39,6 @@ class SendDialogue extends React.Component {
 	}
 
 	render() {
-		console.log(this.state);
 		if (this.state.sent === '') {
 			return( 
 				<div id="formcontainer">
@@ -60,7 +60,8 @@ class SendDialogue extends React.Component {
 			);	
 		} else {
 			return (
-				<div id="sentresponse">{this.state.sent}</div>
+				<Alert explain={"Sent " + this.state.amount + " to address " + this.state.address +
+				" with transaction id "} txt= {this.state.sent} />
 			);
 		}
 	}	
