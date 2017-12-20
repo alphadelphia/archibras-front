@@ -21,7 +21,7 @@ class TransactionList extends React.Component {
 
 	render() {
         let list = this.state.txarray ? 
-            this.state.txarray.map(tx  => <Transaction key={tx.txid}  data={tx} />) : "";
+            this.state.txarray.map(tx  => <Transaction key={tx.txid + tx.category}  data={tx} />) : "";
 		return (     
             <ul className="tx-menu">
               {list}

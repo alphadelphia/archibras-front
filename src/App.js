@@ -8,67 +8,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
 
 import TransactionList from './TransactionList';
-/*
-
-var gettransaction_gen = {
-    "amount" import TransactionList from './TransactionList';: 0.00000000,
-    "confirmations" : 4,
-    "generated" : true,
-    "blockhash" : "00007e684980aa9ea23a615b63c2cb9ff2a2f7d3be6b56e8429f60b75336ba7b",
-    "blockindex" : 0,
-    "blocktime" : 1513345871,
-    "txid" : "51cf44cb803cf46335013f6b7652f427e1c56f002c488ab3d64d151e95bb7d43",
-    "time" : 1513345863,
-    "timereceived" : 1513345863,
-    "details" : [
-        {
-            "account" : "",
-            "address" : "mkx3xd4mACBap88fWhpBvm6ypd8YkJjC3n",
-            "category" : "immature",
-            "amount" : 9744.78000000
-        }
-    ]
-};
-
-var gettransaction_send = {
-    "amount" : -10000.00000000,export default Transaction;
-    "fee" : -0.01000000,
-    "confirmations" : 0,
-    "txid" : "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
-    "time" : 1513346424,
-    "timereceived" : 1513346424,
-    "details" : [
-        {
-            "account" : "",
-            "address" : "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
-            "category" : "send",
-            "amount" : -10000.00000000,
-            "fee" : -0.01000000
-        }
-    ]
-}
-
-var gettransaction_rec = {
-        {
-    "amount" : 10000.00000000,
-    "confirmations" : 0,
-    "txid" : "d0d0939d69daa2b512f53f77b38cd5b1a19e57329750993afef1917d56be8887",
-    "time" : 1513346424,
-    "timereceived" : 1513346424,
-    "details" : [
-        {
-            "account" : "",
-            "address" : "mvFFFH3hA8rBHPoACrVo39bkGom5XQC3Rr",
-            "category" : "receive",
-            "amount" : 10000.00000000
-        }
-    
-}
-
-*/
-
-        
-
+import SendDialogue from './SendDialogue';
+      
 
 class App extends React.Component {
 
@@ -169,14 +110,10 @@ const UIWalletPanel = (props) => (
   	<Switch>
       <Route exact path='/' component={TransactionList}/>
       <Route path='/receive' component={ReceiveUi}/>
-      <Route path='/send' component={SendUi}/>
+      <Route path='/send' component={SendDialogue}/>
       <Route path='/transactions' component={TransactionList}/>
     </Switch>
   </div>
-)
-
-const SendUi = (props) => (
-	"SendUi"
 )
 
 const ReceiveUi = (props) => (

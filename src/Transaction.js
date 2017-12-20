@@ -26,8 +26,7 @@ class Transaction extends React.Component {
 	      txdata: null
 	    };
 	    var iconCategory = null;
-	    this.setIcon(this.props.data.category);
-	    
+	    this.setIcon(this.props.data.category);    
   	}
   	
   	componentDidMount() {

@@ -66,6 +66,25 @@ app.get('/txlist', function(req, res){
 	});
 });
 
+app.get('/send', function(req,res) {
+
+	var address = req.query.address;
+	var amount = parseFloat(req.query.amount);
+	var txid;
+
+	console.log("sendtoaddress " + address + " " + amount);
+
+	rpc.cmd('sendtoaddress', address, amount, function(err, getTxid, resHeaders){
+	  if (err) {
+	  	console.log(err.toString());
+	  	res.send(err.toString());
+	  	return;
+	  }	
+	  txid = getTxid;
+	  res.send(txid);
+	});
+});
+
 app.get('/message', function(req,res) {
 	res.send('{"msg" : "Welcome to Harmonian!"}');
 });
