@@ -14,11 +14,13 @@ class Alert extends React.Component {
 
 	render() {
 		return( 
-			<div id="formcontainer">
-				<form className = "alertform" action="" onSubmit={this.handleSubmit}>
-					<span className = "explainTxt">{this.props.explain}</span>
-					<br/>
-				    <span className = "alertTxt">{this.props.txt}</span><br/>
+			<div className="alertcontainer">
+				<form action="" onSubmit={this.handleSubmit}>
+					<p>
+						<span className = "explainTxt">{this.props.explain}</span>
+						<br/>
+					    <span className = "alertTxt">{this.props.txt}</span><br/>
+				    </p>
 				    <input className="submit" id="submit" type="submit" value="Close" />
 			    </form>
 			</div>

@@ -78,8 +78,8 @@ const UIInfoPanel = (props) => (
    <h3>Wallet info</h3>
    {typeof props.info !== "undefined" &&
     <p>   
-      Balance: {props.info.balance} SOU <br/>
-      Stake: {props.info.stake} SOU <br/>
+      Balance: {props.info.balance} BRIO <br/>
+      Stake: {props.info.stake} BRIO <br/>
       Blocks: {props.info.blocks } <br/>
       IP: {props.info.ip} <br/>
       Connections: {props.info.connections } <br/>
@@ -93,8 +93,8 @@ const UIButtonPanel = () => (
   <div id="buttons">
     <ul className="menu">
       <li><Link to="/">Wallet transactions</Link></li><br/>
-      <li><Link to="/send">Send sous</Link></li><br/>
-      <li><Link to="/receive">Receive sous</Link></li><br/>
+      <li><Link to="/send">Send Brios</Link></li><br/>
+      <li><Link to="/receive">Receive Brios</Link></li><br/>
     </ul>
   </div>     
 )

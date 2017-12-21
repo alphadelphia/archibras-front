@@ -221,3 +221,110 @@ a:hover, a:active {
   background: #f4decb;
 }
 
+.formcontainer{
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 16px;
+    background: #f8eee7;
+}
+
+.alertcontainer 
+{
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 16px;
+    background: #f8eee7;
+}
+
+.alertcontainer .alertTxt
+{
+    font-size: 20px;
+}
+
+
+.formcontainer h1{
+    background: #94618e;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px 16px -16px;
+}
+.formcontainer input[type="text"],
+.formcontainer select
+{
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4%;
+    /*border: 1px solid #ccc;*/
+    padding: 3%;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+}
+
+.formcontainer span
+{
+    margin-left: 8%;
+}
+
+.formcontainer input[type="number"]
+{
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 35%;
+    background: #fff;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 3%;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+}
+
+.formcontainer input[type="text"]:focus,
+.formcontainer input[type="number"]:focus,
+.formcontainer select:focus
+{
+    
+    padding: 3%;
+    border: 1px solid #49274a;
+}
+
+
+.alertcontainer input[type="submit"],
+.formcontainer input[type="submit"]
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 3%;
+    background: #94618e;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;   
+    color: #fff;
+}
+
+.alertcontainer input[type="submit"]:hover,
+.formcontainer input[type="submit"]:hover
+{
+    background: #00bfff;
+}
+

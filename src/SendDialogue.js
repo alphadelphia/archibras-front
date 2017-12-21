@@ -41,26 +41,28 @@ class SendDialogue extends React.Component {
 	render() {
 		if (this.state.sent === '') {
 			return( 
-				<div id="formcontainer">
-					<form className = "sendform" action="" onSubmit={this.handleSubmit}>
-					    <input className="address" id="address" type="text" 
+				<div className="formcontainer">
+					<h1>Send Brios</h1>
+					<form action="" onSubmit={this.handleSubmit}>
+					    <input id="address" type="text" 
 					    	placeholder="Enter Harmonian address" name="address"
 					    	value={this.state.address} 
 					    	onChange={this.handleAddressChange} 
 					    	/>
 					    <br/>
-					    <input className="amount" id="amount" type="number" 
-					    	placeholder="Enter amount of sous" name="amount"
+					    <span>Enter amount :</span>
+					    <input id="amount" type="number" 
+					        name="amount"
 					    	value={this.state.amount} 
 					    	onChange={this.handleAmountChange} 
 					    	/>	
-					    <input className="submit" id="submit" type="submit" value="Send" />
+					    <input id="submit" type="submit" value="Send" />
 				    </form>
 				</div>
 			);	
 		} else {
 			return (
-				<Alert explain={"Sent " + this.state.amount + " to address " + this.state.address +
+				<Alert explain={"Sent " + this.state.amount + " BRIO to address " + this.state.address +
 				" with transaction id "} txt= {this.state.sent} />
 			);
 		}
